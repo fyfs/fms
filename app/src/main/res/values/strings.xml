@@ -1,0 +1,100 @@
+<resources>
+
+    <string name="blank"></string>
+    <string name="app_name">Fms</string>
+    <string name="app_title">면접조사 실사관리 시스템 (FMS)</string>
+
+    <string name="title_main">Marketlink</string>
+    <string name="title_config">환경설정</string>
+    <string name="title_message">메시지</string>
+    <string name="title_field">실사 진행</string>
+    <string name="title_history">내역</string>
+    <string name="title_account">사용자 정보변경</string>
+    <string name="title_agree">이용약관</string>
+    <string name="title_privacy">개인정보취급방침</string>
+    <string name="title_info">App 정보</string>
+    <string name="title_agreement">이용약관 밎 개인정보취급방침</string>
+    <string name="title_logout">로그아웃</string>
+    title_account
+    <string name="btn_notconfirm_list">미확정일자 리스트</string>
+    <string name="btn_confirm_list">확정일자 리스트</string>
+    <string name="btn_complete_list">조사완료 리스트</string>
+    <string name="btn_field">실사 진행</string>
+    <string name="btn_message">메시지 확인</string>
+    <string name="btn_login">로그인</string>
+    <string name="btn_save">저장(수정)</string>
+    <string name="btn_cancel">취소</string>
+    <string name="btn_update">업데이트</string>
+    <string name="btn_agree">동의</string>
+    <string name="btn_delete">삭제</string>
+    <string name="btn_confirm">수신확인</string>
+    <string name="btn_totalMessage">전체 메시지</string>
+    <string name="btn_doingProject">진행중인 프로젝트</string>
+    <string name="btn_finishedProject">종료된 프로젝트</string>
+    <string name="btn_notReadMessage">미확인 메시지</string>
+    <string name="btn_start">조사 시작</string>
+    <string name="btn_end">조사 완료</string>
+    <string name="btn_pause">조사중지</string>
+    <string name="btn_image">사진 올리기</string>
+    <string name="btn_history">내역</string>
+    <string name="btn_contactList">컨택 리스트</string>
+    <string name="btn_finalList">확정일자 리스트</string>
+    <string name="btn_denied">거절</string>
+    <string name="btn_off">부재</string>
+    <string name="btn_tempsave">저장</string>
+
+    <string name="toast_logout">로그아웃 되었습니다</string>
+
+    <string name="title_activity_login">Login</string>
+
+    <string name="desc_loginplease">면접조사 실사관리 시스템 접속을 위해서 아이디와 비밀번호를 입력하신 후 로그인 해주시기 바랍니다.</string>
+    <string name="desc_idpwdforget">※ 아이디와 비밀번호를 잊으신 경우, 실사 관리자에게 문의해 주시기 바랍니다.</string>
+    <string name="desc_pwdchange">※ 비밀번호를 변경하시려면 새로운 비밀번호를 입력하신 후 저장 버튼을 눌러주세요</string>
+    <string name="desc_version">버전 : %s</string>
+    <string name="desc_completeCnt">완료 : %s건</string>
+    <string name="desc_id">ID : %s</string>
+    <string name="desc_startTime">시작시각 : %s</string>
+    <string name="desc_endTime">종료시각 : %s</string>
+    <string name="desc_copyright">Marketlink © All right reserved.</string>
+    <string name="desc_cannotLogin">로그인할 수 없는 계정입니다</string>
+    <string name="desc_needFinal">확정일자를 입력해주세요</string>
+    <string name="desc_saved">저장되었습니다</string>
+    <string name="desc_latestVersion">최신버전입니다</string>
+    <string name="desc_permission">권한을 허용해주세요</string>
+    <string name="desc_gps">GPS가 꺼져 있습니다. GPS를 켜주세요</string>
+    <string name="desc_cannot_image">사진을 불러올 수 없습니다</string>
+    <string name="desc_cannot_start">조사를 시작할 수 없습니다</string>
+
+    <string name="hint_needid">아이디를 입력하세요</string>
+    <string name="hint_needpwd">비밀번호를 입력하세요</string>
+    <string name="hint_name">이름</string>
+    <string name="hint_mobile">휴대폰 번호</string>
+    <string name="hint_email">이메일</string>
+    <string name="hint_pwd">비밀번호</string>
+    <string name="hint_final">확정일자</string>
+    <string name="hint_location">응답장소</string>
+    <string name="hint_etc">비고</string>
+
+    <string name="url_login">http://fms.fgi.co.kr/aj_login</string>
+    <string name="url_agree">http://fms.fgi.co.kr/aj_agree</string>
+    <string name="url_main">http://fms.fgi.co.kr/aj_appMain</string>
+    <string name="url_field">http://fms.fgi.co.kr/aj_appField</string>
+    <string name="url_fieldHistory">http://fms.fgi.co.kr/aj_appFfDetail</string>
+    <string name="url_fieldList">http://fms.fgi.co.kr/aj_appList</string>
+    <string name="url_fieldWrite">http://fms.fgi.co.kr/aj_appListWrite</string>
+    <string name="url_fieldSurveyWrite">http://fms.fgi.co.kr/aj_appFfWrite</string>
+    <string name="url_message">http://fms.fgi.co.kr/aj_appMessage</string>
+    <string name="url_messageRead">http://fms.fgi.co.kr/aj_appMessageRead</string>
+    <string name="url_messageDelete">http://fms.fgi.co.kr/aj_appMessageDelete</string>
+    <string name="url_account">http://fms.fgi.co.kr/aj_appUser</string>
+    <string name="url_accountWrite">http://fms.fgi.co.kr/aj_appUserWrite</string>
+    <string name="url_info">http://fms.fgi.co.kr/aj_appInfo</string>
+    <string name="url_fcmTokenWrite">http://fms.fgi.co.kr/aj_appTokenWrite</string>
+
+    <string name="FMS_ST_DENIED">거절</string>
+    <string name="FMS_ST_OFF">부재</string>
+    <string name="FMS_ST_START">조사시작</string>
+    <string name="FMS_ST_PAUSE">조사중지</string>
+    <string name="FMS_ST_END">조사완료</string>
+
+</resources>

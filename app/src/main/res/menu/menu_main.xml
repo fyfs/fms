@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="kr.co.marketlink.fms.fms.kr.co.marketlink.fms.MainActivity">
+    <item
+        android:id="@+id/menuitem_config"
+        android:orderInCategory="100"
+        android:title="@string/title_config"
+        app:showAsAction="never" />
+</menu>

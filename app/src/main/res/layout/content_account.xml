@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="kr.co.marketlink.fms.AccountActivity"
+    tools:showIn="@layout/activity_account">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:focusableInTouchMode="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_id"/>
+
+        <kr.co.marketlink.ui.MlInput
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:id="@+id/mi_name"
+            android:hint="@string/hint_name"/>
+
+        <kr.co.marketlink.ui.MlInput
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:id="@+id/mi_mobile"
+            android:inputType="phone"
+            android:hint="@string/hint_mobile"/>
+
+        <kr.co.marketlink.ui.MlInput
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:id="@+id/mi_email"
+            android:inputType="textEmailAddress"
+            android:hint="@string/hint_email"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/desc_pwdchange"
+            android:layout_marginTop="10dp"/>
+
+        <kr.co.marketlink.ui.MlInput
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mi_pw"
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            android:hint="@string/hint_pwd"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <kr.co.marketlink.ui.MlButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:ml_text="@string/btn_save"
+                android:id="@+id/btn_save"
+                android:layout_marginRight="8dp"/>
+
+            <kr.co.marketlink.ui.MlButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:ml_text="@string/btn_cancel"
+                android:id="@+id/btn_cancel"
+                android:layout_marginLeft="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

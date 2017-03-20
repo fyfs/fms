@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="kr.co.marketlink.fms">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <service
+            android:name=".FmsFirebaseInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".FmsFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name="kr.co.marketlink.fms.MainActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_main"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="kr.co.marketlink.fms.ConfigActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_config"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="kr.co.marketlink.fms.ListProjectActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="kr.co.marketlink.fms.ProjectDetailListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="kr.co.marketlink.fms.MessageActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_message"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="kr.co.marketlink.fms.ProjectListActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_field"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="kr.co.marketlink.fms.HistoryActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_field"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="kr.co.marketlink.fms.FieldListActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_field"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="kr.co.marketlink.fms.LoginActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="kr.co.marketlink.fms.AccountActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_account"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="kr.co.marketlink.fms.ConfigAgreeActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_agree"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="kr.co.marketlink.fms.ConfigPrivacyActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_agree"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="kr.co.marketlink.fms.InfoActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_info"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="kr.co.marketlink.fms.AgreementActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_agreement"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="kr.co.marketlink.fms.FieldDetailActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_field"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name="kr.co.marketlink.fms.FieldSurveyActivity"
+            android:screenOrientation="portrait"
+            android:label="@string/title_field"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MlButton">
+        <attr name="ml_text" format="reference|string"/>
+        <attr name="ml_text_left" format="reference|string" />
+        <attr name="ml_text_right" format="reference|string" />
+        <attr name="ml_textColor" format="color" />
+        <attr name="ml_backgroundColor" format="color"  />
+        <attr name="ml_borderColor" format="color" />
+        <attr name="ml_borderWidth" format="string" />
+        <attr name="ml_cornerRadius" format="string" />
+        <attr name="ml_onClick" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="MlInput">
+        <attr name="android:hint"/>
+        <attr name="ml_backgroundColor" />
+        <attr name="ml_borderColor" />
+        <attr name="ml_borderWidth" />
+        <attr name="ml_cornerRadius" />
+        <attr name="android:inputType"/>
+    </declare-styleable>
+
+</resources>

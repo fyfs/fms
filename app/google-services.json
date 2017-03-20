@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "711803714280",
+    "firebase_url": "https://fieldwork-management-system.firebaseio.com",
+    "project_id": "fieldwork-management-system",
+    "storage_bucket": "fieldwork-management-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711803714280:android:0e92ecdb2b5a5314",
+        "android_client_info": {
+          "package_name": "kr.co.marketlink.fms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "711803714280-36dpsaol0ak66v20is2ls7sjvqrapa0b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.co.marketlink.fms",
+            "certificate_hash": "34B90B24A133222E7913BFCA0DAFD5D9E44DFF08"
+          }
+        },
+        {
+          "client_id": "711803714280-6s1r5nhu3hh9ejcerkhhsbvlecqmhg4q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZNm2UPRFKNtV-XHJ6RzBiGQta7an2XU0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "711803714280-6s1r5nhu3hh9ejcerkhhsbvlecqmhg4q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

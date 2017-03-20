@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="kr.co.marketlink.fms.ProjectListActivity"
+    android:orientation="vertical"
+    tools:showIn="@layout/activity_field"
+    android:background="@color/colorGrayBackground">
+
+    <kr.co.marketlink.ui.MlButton
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:id="@+id/btn_doingField"
+        app:ml_text="@string/btn_doingProject"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:color/holo_blue_dark">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="24px"
+            android:paddingBottom="24px"
+            android:gravity="center"
+            android:text="No"
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:paddingTop="24px"
+            android:paddingBottom="24px"
+            android:gravity="center"
+            android:text="프로젝트명"
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:paddingTop="24px"
+            android:paddingBottom="24px"
+            android:gravity="center"
+            android:text="조사방법"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/lv_listDoing"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="16dp"
+        android:divider="@android:color/transparent"/>
+
+    <kr.co.marketlink.ui.MlButton
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:id="@+id/btn_totalField"
+        app:ml_text="@string/btn_finishedProject"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:color/holo_blue_dark">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="24px"
+            android:paddingBottom="24px"
+            android:gravity="center"
+            android:text="No"
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:paddingTop="24px"
+            android:paddingBottom="24px"
+            android:gravity="center"
+            android:text="프로젝트명"
+            android:textColor="@android:color/white"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:paddingTop="24px"
+            android:paddingBottom="24px"
+            android:gravity="center"
+            android:text="조사방법"
+            android:textColor="@android:color/white"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/lv_listFinished"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="16dp"
+        android:divider="@android:color/transparent"/>
+
+</LinearLayout>
