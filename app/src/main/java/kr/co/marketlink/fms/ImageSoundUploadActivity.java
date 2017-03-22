@@ -147,6 +147,8 @@ public class ImageSoundUploadActivity extends AppCompatActivity implements View.
     @Override
     public void OnUploadComplete(String filename) {
         save("","",filename,"","");
+        //https://s3.ap-northeast-2.amazonaws.com/marketlinkfms/jpg/201703221707484708.jpg
+        //https://s3.ap-northeast-2.amazonaws.com/marketlinkfms/m4a/201703221707484708.m4a
     }
 
     @Override
