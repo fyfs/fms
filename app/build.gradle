@@ -30,6 +30,12 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.1'
     testCompile 'junit:junit:4.12'
     compile 'gun0912.ted:tedpermission:1.0.3'
+
+    compile 'com.amazonaws:aws-android-sdk-core:2.2.13'
+    compile 'com.amazonaws:aws-android-sdk-cognito:2.2.13'
+    compile 'com.amazonaws:aws-android-sdk-s3:2.2.13'
+    compile 'com.amazonaws:aws-android-sdk-ddb:2.2.13'
+
 }
 
 
