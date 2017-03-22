@@ -43,6 +43,8 @@ public class FieldDetailActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fielddetail);
 
+        Common.log("FieldDetailActivity > onCreate");
+
         TITLE=getIntent().getExtras().getString("TITLE");
         PNUM=getIntent().getExtras().getString("PNUM");
         finalInserted=getIntent().getExtras().getBoolean("finalInserted");

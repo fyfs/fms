@@ -24,6 +24,7 @@ public class AgreementActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agreement);
 
+        Common.log("AgreementActivity > onCreate");
         //박스 테두리
         LinearLayout ll_box=(LinearLayout)findViewById(R.id.ll_box);
         Common.setBorderBg(ll_box, Color.parseColor("#ffffffff"),Color.parseColor("#ff666666"),1,0);

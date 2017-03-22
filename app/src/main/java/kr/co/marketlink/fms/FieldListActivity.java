@@ -45,6 +45,8 @@ public class FieldListActivity extends AppCompatActivity implements Post.PostHan
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fieldlist);
 
+        Common.log("FieldListActivity > onCreate");
+
         TITLE=getIntent().getExtras().getString("TITLE");
         PNUM=Integer.toString(getIntent().getExtras().getInt("PNUM"));
         FINAL_ONLY_YN=getIntent().getExtras().getString("GUBUN");

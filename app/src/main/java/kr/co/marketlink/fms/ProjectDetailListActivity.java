@@ -35,6 +35,7 @@ public class ProjectDetailListActivity extends AppCompatActivity implements Post
     String MORE_YN="N";
     String TITLE="";
     String TYPE="";
+    String _id = "";
     int PAGE=1;
     boolean loading=false;
     JSONArray FIELDNAME=new JSONArray();
@@ -44,6 +45,8 @@ public class ProjectDetailListActivity extends AppCompatActivity implements Post
         Common.currentActivity = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_detail_list);
+
+        Common.log("ProjectDetailListActivity > onCreate");
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -163,6 +166,7 @@ public class ProjectDetailListActivity extends AppCompatActivity implements Post
                 item.view=convertView;
                 convertView.setTag(item);
             }
+
             return convertView;
         }
     }
@@ -180,9 +184,51 @@ public class ProjectDetailListActivity extends AppCompatActivity implements Post
         Post.Post(Post.CALLTYPE_FIELD_LIST,getString(R.string.url_fieldList),params,this,this);
     }
 
+    //프로젝트 정보 불러오기
+    private void getProject(){
+        Object[][] params = {
+                {"TOKEN",Common.getPreference(getApplicationContext(),"TOKEN")}
+                ,{"PNUM", PNUM}
+
+        };
+        Post.Post(Post.CALLTYPE_FIELD_DATA,getString(R.string.url_projectData),params,this,this);
+
+
+    }
+
     @Override
     public void onPostResult(int calltype, JSONObject json) {
         if(calltype==Post.CALLTYPE_FIELD_LIST)dataloadHandler(json);
+        else if(calltype==Post.CALLTYPE_FIELD_DATA)pDataHandler(json);
+    }
+
+    private void pDataHandler(JSONObject json){
+        Common.log("_id(1)=>"+_id);
+        String RESULT = "";
+        String ERR="";
+        try{
+            RESULT=json.getString("RESULT");
+            ERR=json.getString("ERR");
+            String uploadType = json.getString("UPLOAD_TYPE");
+            Intent intent = new Intent(this,ImageSoundUploadActivity.class);
+            intent.putExtra("UPLOAD_TYPE",uploadType);
+            intent.putExtra("PNUM",PNUM);
+            intent.putExtra("_ID",_id);
+            startActivity(intent);
+            finish();
+        }catch (Exception e){
+            Common.log(e.toString());
+        }
+
+         /*Intent intent = new Intent(this,ImageSoundUploadActivity.class);
+            intent.putExtra("PNUM",PNUM);
+            intent.putExtra("TITLE",TITLE);
+            intent.putExtra("finalInserted",item.finalInserted);
+            intent.putExtra("_ID",item.id);
+            intent.putExtra("CONTENTS",item.contents);
+            intent.putExtra("FMS",item.fms);
+            startActivity(intent);
+            finish();*/
     }
 
     //dataload handler
@@ -204,6 +250,7 @@ public class ProjectDetailListActivity extends AppCompatActivity implements Post
             JSONObject DATA=null;
             for(int i=0;i<LIST.length();i++){
                 DATA=(JSONObject)LIST.get(i);
+                Common.log("data==>"+DATA.toString());
                 String _id=DATA.getString("_id");
                 String contents="";
                 String addBr="";
@@ -251,16 +298,23 @@ public class ProjectDetailListActivity extends AppCompatActivity implements Post
     }
 
     //아이템 클릭
-    void itemClick(FieldListItem item){
-        if(TYPE.equals("COMPLETE"))return;
-        Intent intent=new Intent(this,FieldDetailActivity.class);
-        intent.putExtra("PNUM",PNUM);
-        intent.putExtra("TITLE",TITLE);
-        intent.putExtra("finalInserted",item.finalInserted);
-        intent.putExtra("_ID",item.id);
-        intent.putExtra("CONTENTS",item.contents);
-        intent.putExtra("FMS",item.fms);
-        startActivity(intent);
+    void itemClick(FieldListItem item){;
+        //완료일 경우, 이미지 - 사운드 업로드 화면으로 이동
+        if(TYPE.equals("COMPLETE")){
+            _id=item.id;
+            Common.log("_id(2)==>"+_id);
+            getProject();
+        }else{
+            //if(TYPE.equals("COMPLETE"))return;
+            Intent intent=new Intent(this,FieldDetailActivity.class);
+            intent.putExtra("PNUM",PNUM);
+            intent.putExtra("TITLE",TITLE);
+            intent.putExtra("finalInserted",item.finalInserted);
+            intent.putExtra("_ID",item.id);
+            intent.putExtra("CONTENTS",item.contents);
+            intent.putExtra("FMS",item.fms);
+            startActivity(intent);
+        }
     }
 
     //바닥 스크롤

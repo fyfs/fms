@@ -6,4 +6,8 @@
     <color name="colorWarning">#FF0000</color>
     <color name="colorDisable">#666666</color>
     <color name="colorGrayBackground">#eeeeee</color>
+
+    <color name="picton_blue">#539FC5</color>
+    <color name="my_sin">#FFB62A</color>
+    <color name="valencia">#D8463C</color>
 </resources>

@@ -63,6 +63,7 @@
     <string name="desc_permission">권한을 허용해주세요</string>
     <string name="desc_gps">GPS가 꺼져 있습니다. GPS를 켜주세요</string>
     <string name="desc_cannot_image">사진을 불러올 수 없습니다</string>
+    <string name="desc_cannot_file">파일을 불러올 수 없습니다</string>
     <string name="desc_cannot_start">조사를 시작할 수 없습니다</string>
 
     <string name="hint_needid">아이디를 입력하세요</string>
@@ -81,6 +82,7 @@
     <string name="url_field">http://fms.fgi.co.kr/aj_appField</string>
     <string name="url_fieldHistory">http://fms.fgi.co.kr/aj_appFfDetail</string>
     <string name="url_fieldList">http://fms.fgi.co.kr/aj_appList</string>
+    <string name="url_projectData">http://fms.fgi.co.kr/aj_projectDetail</string>
     <string name="url_fieldWrite">http://fms.fgi.co.kr/aj_appListWrite</string>
     <string name="url_fieldSurveyWrite">http://fms.fgi.co.kr/aj_appFfWrite</string>
     <string name="url_message">http://fms.fgi.co.kr/aj_appMessage</string>

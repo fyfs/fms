@@ -40,6 +40,8 @@ public class HistoryActivity extends AppCompatActivity implements Post.PostHandl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
+        Common.log("HistoryActivity > onCreate");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

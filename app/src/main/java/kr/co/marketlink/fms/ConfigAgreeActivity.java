@@ -23,6 +23,8 @@ public class ConfigAgreeActivity extends AppCompatActivity implements Post.PostH
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configagree);
 
+        Common.log("ConfigAgreeActivity > onCreate");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

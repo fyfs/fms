@@ -34,7 +34,6 @@ public class Common {
 
     //Log tag
     static private String myTag="FMS_LOG";
-
     //preference info
     static private String preferenceName="fms";
     static private String secureKey="fmspreffms";

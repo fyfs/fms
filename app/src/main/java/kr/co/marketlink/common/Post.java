@@ -38,6 +38,7 @@ public class Post {
     static public final int CALLTYPE_ACCOUNT_WRITE =13;
     static public final int CALLTYPE_APPINFO =14;
     static public final int CALLTYPE_APPTOKEN_WRITE =15;
+    static public final int CALLTYPE_FIELD_DATA =16; //PNUM 으로 프로젝트 정보조회.
 
     public static void Post(int calltype, String url, Object[][] params,PostHandler handler,Activity activity) {
         HttpAsyncTask hat = new HttpAsyncTask();

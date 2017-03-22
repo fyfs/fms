@@ -22,6 +22,7 @@ public class ConfigPrivacyActivity extends AppCompatActivity implements Post.Pos
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configprivacy);
 
+        Common.log("ConfigPrivacyActivity > onCreate");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="kr.co.marketlink.fms.ImageSoundUploadActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <include layout="@layout/ml_toolbar"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:layout_marginTop="200dp">
+        <Button
+            android:id="@+id/btn_imageupload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/picton_blue"
+            android:onClick="onClick"
+            android:text="이미지 업로드"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"/>
+        <Button
+            android:id="@+id/btn_soundupload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/valencia"
+            android:onClick="onClick"
+            android:text="사운드 업로드"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"/>
+
+        <TextView android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dp"
+                  android:layout_marginBottom="10dp"
+                  android:layout_marginLeft="10dp"
+                  android:text="업로드 리스트"
+                  android:textSize="18sp"/>
+        <Button android:layout_width="match_parent" android:layout_height="300dp"
+                android:background="#FFFFFF"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+    </LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

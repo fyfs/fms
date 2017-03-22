@@ -50,14 +50,12 @@ public class MlInput extends LinearLayout{
 
     //뷰 초기화
     private void initView() {
-
         String infService = Context.LAYOUT_INFLATER_SERVICE;
         LayoutInflater li = (LayoutInflater) getContext().getSystemService(infService);
         View v = li.inflate(R.layout.ml_input, this, false);
         addView(v);
 
         et_center=(EditText)findViewById(R.id.et_center);
-
     }
 
     //테두리와 배경색 적용
@@ -78,6 +76,7 @@ public class MlInput extends LinearLayout{
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.MlInput, defStyleAttr, 0);
         setTypeArray(attrs, typedArray);
     }
+
     private void setTypeArray(AttributeSet attrs, TypedArray typedArray) {
         String hint = getContext().getString(attrs.getAttributeResourceValue("http://schemas.android.com/apk/res/android","hint",R.string.blank));
         if(hint.equals(""))hint=attrs.getAttributeValue("http://schemas.android.com/apk/res/android","hint");
@@ -98,10 +97,17 @@ public class MlInput extends LinearLayout{
     public String getText(){
         return et_center.getText().toString();
     }
+
     //값 적용
     public void setText(String txt){
         et_center.setText(txt);
     }
 
-
+    //EditText disable
+    public void setTextDisable(){
+        et_center.setClickable(false);
+        et_center.setEnabled(false);
+        et_center.setFocusable(false);
+        et_center.setFocusableInTouchMode(false);
+    }
 }

@@ -51,6 +51,8 @@ public class FieldSurveyActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fieldsurvey);
 
+        Common.log("FieldSurveyActivity > onCreate");
+
         TITLE=getIntent().getExtras().getString("TITLE");
         PNUM=Integer.toString(getIntent().getExtras().getInt("PNUM"));
         LID=getIntent().getExtras().getString("LID");
