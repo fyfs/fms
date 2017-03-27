@@ -51,6 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 kr.co.marketlink.ui.MlInput editText = (kr.co.marketlink.ui.MlInput)findViewById(R.id.mi_id);
                 final kr.co.marketlink.ui.MlInput editPw = (kr.co.marketlink.ui.MlInput)findViewById(R.id.mi_pw);
                 //연락처 형식에 맞게 변경
+                Common.log(phnNo);
                 String mobile = "0"+phnNo.replace("+82","");
                 editText.setText(mobile);
                 Common.log("mobile : "+mobile);
