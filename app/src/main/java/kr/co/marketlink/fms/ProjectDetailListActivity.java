@@ -292,6 +292,7 @@ public class ProjectDetailListActivity extends AppCompatActivity implements Post
         switch (id) {
             case R.id.rl_fieldlistitem:
                 itemClick((FieldListItem) v.getTag());
+                Common.addActivity(this);
                 break;
         }
     }

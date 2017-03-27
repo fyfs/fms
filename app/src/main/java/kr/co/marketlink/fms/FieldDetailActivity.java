@@ -204,6 +204,14 @@ public class FieldDetailActivity extends AppCompatActivity implements View.OnCli
             return;
         }
         Toast.makeText(this, getString(R.string.desc_saved), Toast.LENGTH_SHORT).show();
+
+        Common.log("FMS_ST==>"+FMS_ST);
+        if(FMS_ST.equals(getString(R.string.FMS_ST_END))){
+            Common.addActivity(this);
+            Common.flushActivity();
+        }
+
+
 //        if(FMS_ST.equals(getString(R.string.FMS_ST_START)))fieldStart();
 //        else Toast.makeText(this, getString(R.string.desc_saved), Toast.LENGTH_SHORT).show();
 //        if(FMS_ST.equals(getString(R.string.FMS_ST_END))||FMS_ST.equals(getString(R.string.FMS_ST_DENIED))||FMS_ST.equals(getString(R.string.FMS_ST_OFF))||(!FMS_FT.equals(""))) finish();
@@ -231,6 +239,7 @@ public class FieldDetailActivity extends AppCompatActivity implements View.OnCli
         //String fms_etc=mi_etc.getText();
         String fms_etc="";
         save(getString(R.string.FMS_ST_END),"","",fms_etc,"");
+
     }
 
     //사진 올리기

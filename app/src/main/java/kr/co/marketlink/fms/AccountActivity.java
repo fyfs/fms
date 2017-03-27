@@ -81,8 +81,12 @@ public class AccountActivity extends AppCompatActivity implements View.OnClickLi
         MlInput mi_email=(MlInput)findViewById(R.id.mi_email);
         tv_id.setText(ID);
         mi_name.setText(NAME);
+        mi_name.setTextDisable();
         mi_mobile.setText(MOBILE);
+        mi_mobile.setTextDisable();
         mi_email.setText(EMAIL);
+        mi_email.setTextDisable();
+
     }
 
     @Override

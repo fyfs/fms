@@ -245,22 +245,21 @@ public class ImageSoundUploadActivity extends AppCompatActivity implements View.
                 JSONArray list = (JSONArray) json.getJSONArray("LIST");
                 listItem = list.getJSONObject(0);
                 String _id = listItem.getString("_id");
-                JSONArray fms_img = (JSONArray) listItem.getJSONArray("FMS_IMG");
-                JSONArray fms_snd = (JSONArray) listItem.getJSONArray("FMS_SND");
 
-                if(UPLOAD_TYPE.equals("SOUND")){
+
+                if(listItem.has("FMS_IMG")){
+                    JSONArray fms_img = (JSONArray) listItem.getJSONArray("FMS_IMG");
                     for (i = 0; i < 3; i++) { //fms_snd.length() 윤정환 대리 요청으로 우선 3개까지만 나오도록 함.
-                        fmsItem = fms_snd.getJSONObject(i);
+                        fmsItem = fms_img.getJSONObject(i);
                         dt = fmsItem.getString("DT");
                         url = fmsItem.getString("URL").replaceAll("https://s3.ap-northeast-2.amazonaws.com/marketlinkfms/jpg/", "").replaceAll("https:///s3.ap-northeast-2.amazonaws.com/marketlinkfms/m4a/", "").replaceAll("https:\\/\\/s3.ap-northeast-2.amazonaws.com\\/marketlinkfms\\/m4a\\/", "");
                         adapter.addItem("", dt, url);
                         adapter.notifyDataSetChanged();
-
-
                     }
-                }else{
+                }else if(listItem.has("FMS_SND")) {
+                    JSONArray fms_snd = (JSONArray) listItem.getJSONArray("FMS_SND");
                     for (i = 0; i < 3; i++) { //fms_img.length() 윤정환 대리 요청으로 우선 3개까지만 나오도록 함.
-                        fmsItem = fms_img.getJSONObject(i);
+                        fmsItem = fms_snd.getJSONObject(i);
                         dt = fmsItem.getString("DT");
                         url = fmsItem.getString("URL").replaceAll("https://s3.ap-northeast-2.amazonaws.com/marketlinkfms/jpg/", "").replaceAll("https:///s3.ap-northeast-2.amazonaws.com/marketlinkfms/m4a/", "").replaceAll("https:\\/\\/s3.ap-northeast-2.amazonaws.com\\/marketlinkfms\\/m4a\\/", "");
                         adapter.addItem("", dt, url);

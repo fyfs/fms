@@ -25,14 +25,15 @@ import kr.co.marketlink.common.Post;
 import kr.co.marketlink.ui.MlButton;
 import kr.co.marketlink.ui.MlInput;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener,Post.PostHandler{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, Post.PostHandler {
 
-    boolean hasTargetActivity=false;
+    boolean hasTargetActivity = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if(getIntent().getExtras()!=null) hasTargetActivity =getIntent().getExtras().getBoolean("HAS_TARGET_ACTIVITY",false);
-        if(!hasTargetActivity)Common.addActivity(this);
+        if (getIntent().getExtras() != null)
+            hasTargetActivity = getIntent().getExtras().getBoolean("HAS_TARGET_ACTIVITY", false);
+        if (!hasTargetActivity) Common.addActivity(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -44,22 +45,26 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onPermissionGranted() {
                 TelephonyManager mTelephonyMgr;
 
-                mTelephonyMgr = (TelephonyManager)getSystemService(getApplicationContext().TELEPHONY_SERVICE);
+                mTelephonyMgr = (TelephonyManager) getSystemService(getApplicationContext().TELEPHONY_SERVICE);
                 //String imsi = mTelephonyMgr.getSubscriberId();
-                String phnNo=mTelephonyMgr.getLine1Number();
+                String phnNo = mTelephonyMgr.getLine1Number();
                 Common.log(phnNo);
-                kr.co.marketlink.ui.MlInput editText = (kr.co.marketlink.ui.MlInput)findViewById(R.id.mi_id);
-                final kr.co.marketlink.ui.MlInput editPw = (kr.co.marketlink.ui.MlInput)findViewById(R.id.mi_pw);
+                kr.co.marketlink.ui.MlInput editText = (kr.co.marketlink.ui.MlInput) findViewById(R.id.mi_id);
+                final kr.co.marketlink.ui.MlInput editPw = (kr.co.marketlink.ui.MlInput) findViewById(R.id.mi_pw);
                 //연락처 형식에 맞게 변경
                 Common.log(phnNo);
-                String mobile = "0"+phnNo.replace("+82","");
+                String mobile = phnNo.replace("+82", "");
+                if (!mobile.substring(0, 1).equals("0")) {
+                    mobile = "0" + mobile;
+                }
                 editText.setText(mobile);
-                Common.log("mobile : "+mobile);
+                Common.log("mobile : " + mobile);
                 //// TODO: 2017. 3. 22. 시작시 아래 주석 해제할것 
                 //editText.setTextDisable();
 
                 editPw.requestFocus();
             }
+
             @Override
             public void onPermissionDenied(ArrayList<String> deniedPermissions) {
 
@@ -75,69 +80,68 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .check();
 
 
-
-
-
     }
 
     //event listener
-    private void addEventListener(){
-        MlButton btn_login=(MlButton)findViewById(R.id.btn_login);
-        if(btn_login!=null)btn_login.setOnClickListener(this);
+    private void addEventListener() {
+        MlButton btn_login = (MlButton) findViewById(R.id.btn_login);
+        if (btn_login != null) btn_login.setOnClickListener(this);
     }
 
     //click handler
-    public void onClick(View view){
+    public void onClick(View view) {
         int id = view.getId();
-        if (id==R.id.btn_login)login();
+        if (id == R.id.btn_login) login();
     }
 
     //login
-    void login(){
-        MlInput mi_id=(MlInput)findViewById(R.id.mi_id);
-        MlInput mi_pw=(MlInput)findViewById(R.id.mi_pw);
-        String FCM_TOKEN= FirebaseInstanceId.getInstance().getToken();
+    void login() {
+        MlInput mi_id = (MlInput) findViewById(R.id.mi_id);
+        MlInput mi_pw = (MlInput) findViewById(R.id.mi_pw);
+        String FCM_TOKEN = FirebaseInstanceId.getInstance().getToken();
         Object[][] params = {
-                {"_ID",mi_id.getText()}
-                ,{"PWD",mi_pw.getText()}
-                ,{"FCM_TOKEN",FCM_TOKEN}
+                {"_ID", mi_id.getText()}
+                , {"PWD", mi_pw.getText()}
+                , {"FCM_TOKEN", FCM_TOKEN}
         };
-        Post.Post(Post.CALLTYPE_LOGIN,getString(R.string.url_login),params,this,this);
+        Post.Post(Post.CALLTYPE_LOGIN, getString(R.string.url_login), params, this, this);
     }
 
     //postHandler
     @Override
     public void onPostResult(int calltype, JSONObject json) {
-        if(calltype==Post.CALLTYPE_LOGIN)loginHandler(json);
+        if (calltype == Post.CALLTYPE_LOGIN) loginHandler(json);
     }
 
     //로그인 처리
-    void loginHandler(JSONObject json){
-        String RESULT="";
-        String ERR="";
-        String TOKEN="";
-        String USERTYPE="";
-        TextView tv_warning=(TextView)findViewById(R.id.tv_warning);
-        try{
-            RESULT=json.getString("RESULT");
-            ERR=json.getString("ERR");
-            TOKEN=json.getString("TOKEN");
-            USERTYPE=json.getString("USERTYPE");
-            if(ERR.equals("")&&(!USERTYPE.equals("iv")))ERR=getString(R.string.desc_cannotLogin);
-        } catch (Exception e){}
-        if(!ERR.equals("")){
+    void loginHandler(JSONObject json) {
+        String RESULT = "";
+        String ERR = "";
+        String TOKEN = "";
+        String USERTYPE = "";
+        TextView tv_warning = (TextView) findViewById(R.id.tv_warning);
+        try {
+            RESULT = json.getString("RESULT");
+            ERR = json.getString("ERR");
+            TOKEN = json.getString("TOKEN");
+            USERTYPE = json.getString("USERTYPE");
+            if (ERR.equals("") && (!USERTYPE.equals("iv")))
+                ERR = getString(R.string.desc_cannotLogin);
+        } catch (Exception e) {
+        }
+        if (!ERR.equals("")) {
             tv_warning.setText(ERR);
             tv_warning.setVisibility(View.VISIBLE);
             return;
         }
-        MlInput mi_pw=(MlInput)findViewById(R.id.mi_pw);
+        MlInput mi_pw = (MlInput) findViewById(R.id.mi_pw);
         mi_pw.setText("");
-        Common.setPreference(getApplicationContext(),"TOKEN",TOKEN);
-        if(hasTargetActivity){
+        Common.setPreference(getApplicationContext(), "TOKEN", TOKEN);
+        if (hasTargetActivity) {
             finish();
             return;
         }
-        Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 //        Intent intent=new Intent(LoginActivity.this,AgreementActivity.class);
         startActivity(intent);
     }
