@@ -39,6 +39,11 @@ public class Post {
     static public final int CALLTYPE_APPINFO =14;
     static public final int CALLTYPE_APPTOKEN_WRITE =15;
     static public final int CALLTYPE_FIELD_DATA =16; //PNUM 으로 프로젝트 정보조회.
+    static public final int CALLTYPE_SELECT_UPLOAD_LIST =17;//이미지 또는 사운드 업로드정보 조회.
+    static public final int CALLTYPE_INSERT_IMAGE_INFO =18;//이미지 또는 사운드 업로드정보 DB 추가.
+    static public final int CALLTYPE_SELECT_PROJECT_TYPE =19;//프로젝트 이미지 업로드 타입조회
+    static public final int CALLTYPE_SELECT_THEAD =20;//_ID로 THEAD 조회
+
 
     public static void Post(int calltype, String url, Object[][] params,PostHandler handler,Activity activity) {
         HttpAsyncTask hat = new HttpAsyncTask();

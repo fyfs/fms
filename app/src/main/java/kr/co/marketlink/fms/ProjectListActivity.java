@@ -285,7 +285,7 @@ public class ProjectListActivity extends AppCompatActivity implements AdapterVie
         intent.putExtra("PNUM", Integer.toString(startFielditem.pnum));
         intent.putExtra("TITLE", startFielditem.title);
         intent.putExtra("LID", LID);
-        startActivity(intent);
+        startActivity(intent);//
     }
 
     //history

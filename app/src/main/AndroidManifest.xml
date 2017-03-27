@@ -26,7 +26,7 @@
         </service>
         <service
             android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
-            android:enabled="true" />
+            android:enabled="true"/>
 
         <activity
             android:name=".MainActivity"
@@ -127,8 +127,13 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".ImageSoundUploadActivity"
-                  android:label="@string/title_field"
+        <activity
+            android:name=".ImageSoundUploadActivity"
+            android:label="@string/title_field"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".FieldSurveyFileUploadActivity"
                   android:screenOrientation="portrait"
                   android:theme="@style/AppTheme.NoActionBar">
         </activity>

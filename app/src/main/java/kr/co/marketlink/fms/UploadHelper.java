@@ -31,9 +31,9 @@ public class UploadHelper {
             uploadHandler.OnUploadFail("파일이 정상적이지 않습니다");
             return;
         }
-        String ext="";
+        final String ext;
         if(file.getPath().split("\\.").length>0)ext = file.getPath().split("\\.")[file.getPath().split("\\.").length - 1];
-        if(ext.equals(""))ext="etc";
+        else ext="etc";
         Date now=new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
         final String filename= format.format(now)+Double.toString(Math.random()).substring(2,6)+"."+ext;
@@ -57,7 +57,7 @@ public class UploadHelper {
                 //FAILED
                 //COMPLETED
                 Common.log("STATE:"+state.toString());
-                if(state.toString().equals("COMPLETED"))uploadHandler.OnUploadComplete(filename);
+                if(state.toString().equals("COMPLETED"))uploadHandler.OnUploadComplete(ext+"/"+filename);
                 else if(state.toString().equals("FAILED"))uploadHandler.OnUploadFail("업로드를 실패했습니다");
             }
 

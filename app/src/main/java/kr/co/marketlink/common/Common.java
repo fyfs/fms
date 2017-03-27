@@ -208,7 +208,6 @@ public class Common {
                     Uri split1 = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(docId).longValue());
                     return getDataColumn(context, split1, (String)null, (String[])null);
                 }
-
                 if(isMediaDocument(uri)) {
                     docId = DocumentsContract.getDocumentId(uri);
                     split = docId.split(":");
@@ -239,7 +238,23 @@ public class Common {
 
         return null;
     }
+    public static String getDateString() {
+        String strDate = "";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS",java.util.Locale.getDefault());
+        Date date = new Date();
+        strDate = dateFormat.format(date);
+        return strDate;
+    }
 
+    public static String getRandomString(int i) {
+        String str = "";
+        while (str.length()<i){
+            int rndNum = (int)(Math.random()*10)+1;
+            str+=String.valueOf(rndNum);
+        }
+
+        return str;
+    }
     public static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
         Cursor cursor = null;
         String column = "_data";

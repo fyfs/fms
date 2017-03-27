@@ -19,7 +19,6 @@ import kr.co.marketlink.common.Post;
 import kr.co.marketlink.ui.MlButton;
 
 public class InfoActivity extends AppCompatActivity implements View.OnClickListener,Post.PostHandler{
-
     String UPDATE_URL="";
 
     @Override

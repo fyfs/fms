@@ -39,9 +39,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Common.log("LoginActivity > onCreate");
 
         addEventListener();
-
-
-
         PermissionListener permissionlistener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
@@ -54,9 +51,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 kr.co.marketlink.ui.MlInput editText = (kr.co.marketlink.ui.MlInput)findViewById(R.id.mi_id);
                 final kr.co.marketlink.ui.MlInput editPw = (kr.co.marketlink.ui.MlInput)findViewById(R.id.mi_pw);
                 //연락처 형식에 맞게 변경
-                String mobile = phnNo.substring(3);
-                editText.setText("0"+mobile);
-                Common.log("mobile"+mobile);
+                String mobile = "0"+phnNo.replace("+82","");
+                editText.setText(mobile);
+                Common.log("mobile : "+mobile);
                 //// TODO: 2017. 3. 22. 시작시 아래 주석 해제할것 
                 //editText.setTextDisable();
 

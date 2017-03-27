@@ -1,48 +1,39 @@
 package kr.co.marketlink.fms;
 
-import android.*;
 import android.app.Activity;
 import android.content.Intent;
-import android.media.Image;
-import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.amazonaws.auth.CognitoCachingCredentialsProvider;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
-import com.amazonaws.regions.Region;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import kr.co.marketlink.common.Common;
-import kr.co.marketlink.common.GPS;
 import kr.co.marketlink.common.Post;
 
-public class ImageSoundUploadActivity extends AppCompatActivity implements View.OnClickListener, Post.PostHandler ,UploadHelper.UploadHandler{
+public class ImageSoundUploadActivity extends AppCompatActivity implements View.OnClickListener, Post.PostHandler, UploadHelper.UploadHandler {
     String UPLOAD_TYPE = "";
     String PNUM = "";
-    String _id = "";
+    String _ID = "";
     final int PICK_PHOTO_FOR_AVATAR = 0;
     final int PICK_VOICE_FOR_AVATAR = 1;
     Activity activity = this;
+    String filename = "";
+    //임시 테스트
+    ListView listview;
+    FileUploadAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +51,11 @@ public class ImageSoundUploadActivity extends AppCompatActivity implements View.
 
         UPLOAD_TYPE = getIntent().getExtras().getString("UPLOAD_TYPE");
         PNUM = getIntent().getExtras().getString("PNUM");
-        _id = getIntent().getExtras().getString("_ID");
+        _ID = getIntent().getExtras().getString("_ID");
 
-        Common.log("_id(2)==>" + _id);
+        Common.log("UPLOAD_TYPE==>"+UPLOAD_TYPE);
+        Common.log("PNUM==>"+PNUM);
+        Common.log("_ID==>"+_ID);
 
         Button btn_imageupload = (Button) findViewById(R.id.btn_imageupload);
         Button btn_soundupload = (Button) findViewById(R.id.btn_soundupload);
@@ -72,9 +65,9 @@ public class ImageSoundUploadActivity extends AppCompatActivity implements View.
         } else {
             btn_soundupload.setVisibility(View.GONE);
         }
+        /*btn_imageupload.setVisibility(View.VISIBLE);
+        btn_soundupload.setVisibility(View.VISIBLE);*/
 
-        btn_imageupload.setVisibility(View.VISIBLE);
-        btn_soundupload.setVisibility(View.VISIBLE);
 
     }
 
@@ -91,11 +84,9 @@ public class ImageSoundUploadActivity extends AppCompatActivity implements View.
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_imageupload:
-                //Toast.makeText(this,"작업중입니다.",Toast.LENGTH_LONG).show();
                 pickImageVoice("i");
                 break;
             case R.id.btn_soundupload:
-                //Toast.makeText(this,"작업중입니다.",Toast.LENGTH_LONG).show();
                 pickImageVoice("v");
                 break;
         }
@@ -113,17 +104,13 @@ public class ImageSoundUploadActivity extends AppCompatActivity implements View.
                 } else {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("audio/*");
-                    //startActivity(Intent.createChooser(intent, "Select music"));
-                    startActivityForResult(intent.createChooser(intent, "voice"), PICK_VOICE_FOR_AVATAR);
+                    startActivityForResult(intent, PICK_VOICE_FOR_AVATAR);
                 }
-
             }
 
             @Override
             public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-
             }
-
         };
         new TedPermission(activity)
                 .setPermissionListener(permissionlistener)
@@ -138,15 +125,15 @@ public class ImageSoundUploadActivity extends AppCompatActivity implements View.
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PICK_PHOTO_FOR_AVATAR && resultCode == Activity.RESULT_OK) {
-            UploadHelper.upload(this,data.getData(),this);
+            UploadHelper.upload(this, data.getData(), this);
         } else if (requestCode == PICK_VOICE_FOR_AVATAR && resultCode == Activity.RESULT_OK) {
-            UploadHelper.upload(this,data.getData(),this);
+            UploadHelper.upload(this, data.getData(), this);
         }
     }
 
     @Override
     public void OnUploadComplete(String filename) {
-        save("","",filename,"","");
+        save(filename);
         //https://s3.ap-northeast-2.amazonaws.com/marketlinkfms/jpg/201703221707484708.jpg
         //https://s3.ap-northeast-2.amazonaws.com/marketlinkfms/m4a/201703221707484708.m4a
     }
@@ -156,21 +143,27 @@ public class ImageSoundUploadActivity extends AppCompatActivity implements View.
         Toast.makeText(activity, error, Toast.LENGTH_SHORT).show();
     }
 
-    //저장
-    void save(String fms_st, String fms_ft, String fms_img, String fms_etc, String fms_lc) {
-        //Common.log("_id(2)==>"+_id);
-        GPS.getGps(getApplicationContext());
+    //DB 정보저장
+    void insert(String filename) {
         Object[][] params = {
                 {"TOKEN", Common.getPreference(getApplicationContext(), "TOKEN")}
                 , {"PNUM", PNUM}
-                , {"_ID", _id}
-                , {"FMS_ST", fms_st}
-                , {"FMS_FT", fms_ft}
-                , {"FMS_LC", fms_lc}
-                , {"FMS_IMG", fms_img}
-                , {"FMS_ETC", fms_etc}
-                , {"LAT", GPS.lastLat}
-                , {"LNG", GPS.lastLng}
+                , {"_ID", _ID}
+                , {"FILE", filename}
+                , {"UPLOAD_TYPE", UPLOAD_TYPE}
+        };
+        Post.Post(Post.CALLTYPE_INSERT_IMAGE_INFO, getString(R.string.url_fieldWriteImage), params, this, this);
+    }
+
+    //저장
+    void save(String filename) {
+        this.filename = filename;
+        Object[][] params = {
+                {"TOKEN", Common.getPreference(getApplicationContext(), "TOKEN")}
+                , {"PNUM", PNUM}
+                , {"_ID", _ID}
+                , {"FILE", filename}
+                , {"UPLOAD_TYPE", UPLOAD_TYPE}
         };
         Post.Post(Post.CALLTYPE_FIELD_WRITE, getString(R.string.url_fieldWrite), params, this, this);
     }
@@ -178,17 +171,31 @@ public class ImageSoundUploadActivity extends AppCompatActivity implements View.
     @Override
     public void onPostResult(int calltype, JSONObject json) {
         if (calltype == Post.CALLTYPE_FIELD_WRITE) saveHandler(json);
+        else if (calltype == Post.CALLTYPE_INSERT_IMAGE_INFO) insertImageInfoHandler(json);
+        else if (calltype == Post.CALLTYPE_SELECT_UPLOAD_LIST) listHandler(json);
     }
 
-    //저장 후 처리
+    //이미지 저장
     private void saveHandler(JSONObject json) {
         String ERR = "";
-        String FMS_ST = "";
-        String FMS_FT = "";
         try {
             ERR = json.getString("ERR");
-            FMS_ST = json.getString("FMS_ST");
-            FMS_FT = json.getString("FMS_FT");
+        } catch (Exception e) {
+        }
+        if (!ERR.equals("")) {
+            Toast.makeText(this, ERR, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        insert(filename);
+    }
+
+    //이미지 업로드시, DB 정보 추가.
+    private void insertImageInfoHandler(JSONObject json) {
+        String ERR = "";
+        try {
+            ERR = json.getString("ERR");
+            //어댑터 갱신
+            adapter.notifyDataSetChanged();
         } catch (Exception e) {
         }
         if (!ERR.equals("")) {
@@ -196,10 +203,81 @@ public class ImageSoundUploadActivity extends AppCompatActivity implements View.
             return;
         }
         Toast.makeText(this, getString(R.string.desc_saved), Toast.LENGTH_SHORT).show();
-//        if(FMS_ST.equals(getString(R.string.FMS_ST_START)))fieldStart();
-//        else Toast.makeText(this, getString(R.string.desc_saved), Toast.LENGTH_SHORT).show();
-//        if(FMS_ST.equals(getString(R.string.FMS_ST_END))||FMS_ST.equals(getString(R.string.FMS_ST_DENIED))||FMS_ST.equals(getString(R.string.FMS_ST_OFF))||(!FMS_FT.equals(""))) finish();
     }
 
+    /*
+        업로드 리스트 정보 로드
+    */
+    private void listLoad() {
+        Object[][] params = {
+                 {"TOKEN", Common.getPreference(getApplicationContext(), "TOKEN")}
+                ,{"PNUM", PNUM}
+                ,{"_ID", _ID}
+        };
+        Post.Post(Post.CALLTYPE_SELECT_UPLOAD_LIST, getString(R.string.url_fileuploadList), params, this, this);
+    }
 
+    //저장 후 처리
+    private void listHandler(JSONObject json) {
+        Common.log(json.toString());
+        String ERR = "";
+        String RESULT = "";
+        // Adapter 생성
+        adapter = new FileUploadAdapter();
+
+        // 리스트뷰 참조 및 Adapter달기
+        listview = (ListView) findViewById(R.id.lv_fileupload);
+        listview.setAdapter(adapter);
+
+        try {
+            ERR = json.getString("ERR");
+            RESULT = json.getString("RESULT");
+            JSONObject listItem;
+            JSONObject fmsItem;
+            int i;
+
+            if (!ERR.equals("")) {
+                Toast.makeText(this, ERR, Toast.LENGTH_SHORT).show();
+                return;
+            } else {
+                String dt = "";
+                String url = "";
+                JSONArray list = (JSONArray) json.getJSONArray("LIST");
+                listItem = list.getJSONObject(0);
+                String _id = listItem.getString("_id");
+                JSONArray fms_img = (JSONArray) listItem.getJSONArray("FMS_IMG");
+                JSONArray fms_snd = (JSONArray) listItem.getJSONArray("FMS_SND");
+
+                if(UPLOAD_TYPE.equals("SOUND")){
+                    for (i = 0; i < 3; i++) { //fms_snd.length() 윤정환 대리 요청으로 우선 3개까지만 나오도록 함.
+                        fmsItem = fms_snd.getJSONObject(i);
+                        dt = fmsItem.getString("DT");
+                        url = fmsItem.getString("URL").replaceAll("https://s3.ap-northeast-2.amazonaws.com/marketlinkfms/jpg/", "").replaceAll("https:///s3.ap-northeast-2.amazonaws.com/marketlinkfms/m4a/", "").replaceAll("https:\\/\\/s3.ap-northeast-2.amazonaws.com\\/marketlinkfms\\/m4a\\/", "");
+                        adapter.addItem("", dt, url);
+                        adapter.notifyDataSetChanged();
+
+
+                    }
+                }else{
+                    for (i = 0; i < 3; i++) { //fms_img.length() 윤정환 대리 요청으로 우선 3개까지만 나오도록 함.
+                        fmsItem = fms_img.getJSONObject(i);
+                        dt = fmsItem.getString("DT");
+                        url = fmsItem.getString("URL").replaceAll("https://s3.ap-northeast-2.amazonaws.com/marketlinkfms/jpg/", "").replaceAll("https:///s3.ap-northeast-2.amazonaws.com/marketlinkfms/m4a/", "").replaceAll("https:\\/\\/s3.ap-northeast-2.amazonaws.com\\/marketlinkfms\\/m4a\\/", "");
+                        adapter.addItem("", dt, url);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            Common.log(e.toString());
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        //업로드 리스트 정보 호출
+        listLoad();
+        super.onResume();
+
+    }
 }

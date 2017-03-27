@@ -82,8 +82,14 @@
     <string name="url_field">http://fms.fgi.co.kr/aj_appField</string>
     <string name="url_fieldHistory">http://fms.fgi.co.kr/aj_appFfDetail</string>
     <string name="url_fieldList">http://fms.fgi.co.kr/aj_appList</string>
+    <string name="url_fileuploadList">http://fms.fgi.co.kr/aj_fileUploadList</string><!-- 추가 -->
+    <string name="url_fileuploadFFList">http://fms.fgi.co.kr/aj_fileUploadFFList</string><!-- 추가 -->
     <string name="url_projectData">http://fms.fgi.co.kr/aj_projectDetail</string>
     <string name="url_fieldWrite">http://fms.fgi.co.kr/aj_appListWrite</string>
+    <string name="url_fieldWriteImage">http://fms.fgi.co.kr/aj_appListWriteImage</string><!--추가1 -->
+    <string name="url_fieldWriteffImage">http://fms.fgi.co.kr/aj_appFfWriteImage</string><!--추가2 -->
+    <string name="url_selectProjectUploadType">http://fms.fgi.co.kr/aj_projectUploadType</string><!--추가3 : 프로젝트 이미지 업로드 타입조회 -->
+    <string name="url_selectThead">http://fms.fgi.co.kr/aj_selectThead</string><!--추가4 : THEAD 조회 -->
     <string name="url_fieldSurveyWrite">http://fms.fgi.co.kr/aj_appFfWrite</string>
     <string name="url_message">http://fms.fgi.co.kr/aj_appMessage</string>
     <string name="url_messageRead">http://fms.fgi.co.kr/aj_appMessageRead</string>
