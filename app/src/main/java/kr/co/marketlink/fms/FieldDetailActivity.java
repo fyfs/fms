@@ -206,7 +206,7 @@ public class FieldDetailActivity extends AppCompatActivity implements View.OnCli
         Toast.makeText(this, getString(R.string.desc_saved), Toast.LENGTH_SHORT).show();
 
         Common.log("FMS_ST==>"+FMS_ST);
-        if(FMS_ST.equals(getString(R.string.FMS_ST_END))){
+        if(FMS_ST.equals(getString(R.string.FMS_ST_END))||FMS_ST.equals(getString(R.string.FMS_ST_DENIED))||FMS_ST.equals(getString(R.string.FMS_ST_OFF))||!FMS_FT.equals("")){
             Common.addActivity(this);
             Common.flushActivity();
         }

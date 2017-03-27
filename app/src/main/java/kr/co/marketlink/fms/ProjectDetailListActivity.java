@@ -274,7 +274,8 @@ public class ProjectDetailListActivity extends AppCompatActivity implements Post
                 if (!fms_ft.equals("")) fms += "확정일자:" + fms_ft + "\n";
                 if (fms.length() >= 1 && fms.substring(fms.length() - 1).equals("\n"))
                     fms = fms.substring(0, fms.length() - 1);
-                adapter.add(new FieldListItem(_id, contents, finalInserted, fms));
+                    adapter.add(new FieldListItem(_id, contents, finalInserted, fms));
+
             }
         } catch (Exception e) {
             if (ERR.equals("")) ERR = e.toString();
